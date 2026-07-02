@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Tolani Script';
+  src: url('/assets/use.typekit.net/af/1cb8af/000000000000000077584092/31/l?subset_id=1&fvd=n4&v=3')
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'DM Sans', ui-sans-serif, sans-serif;
+  --font-script: 'Tolani Script', cursive;
+
+  --color-paper: #fcfcfc;
+  --color-ink: #1a1a1a;
+  --color-muted: #666666;
+  --color-brand: #564c45;
+  --color-card: #f0ede8;
+  --color-panel: #fffdfa;
+  --color-rule: #666666;
+
+  --color-iheart: #c5202d;
+  --color-knot: #8ba5d8;
+  --color-ehr: #6c4473;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-muted);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}

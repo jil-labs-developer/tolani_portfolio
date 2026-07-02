@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/1", "destination": "/", "permanent": true },
+    { "source": "/1/", "destination": "/", "permanent": true },
+    { "source": "/2", "destination": "/iheart", "permanent": true },
+    { "source": "/2/", "destination": "/iheart", "permanent": true },
+    { "source": "/3", "destination": "/knot", "permanent": true },
+    { "source": "/3/", "destination": "/knot", "permanent": true },
+    { "source": "/4", "destination": "/ehr", "permanent": true },
+    { "source": "/4/", "destination": "/ehr", "permanent": true },
+    { "source": "/5", "destination": "/about", "permanent": true },
+    { "source": "/5/", "destination": "/about", "permanent": true }
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
