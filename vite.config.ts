@@ -9,7 +9,7 @@ export default defineConfig({
     strictPort: true,
   },
   build: {
-    outDir: '../deploy',
+    outDir: 'dist',
     emptyOutDir: true,
     // Keep Vite's hashed bundle output out of /assets, which is reserved for
     // the verbatim CDN-mirrored content under public/assets.
