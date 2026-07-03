@@ -19,7 +19,7 @@ body {
 
 /*
  * The live site replaces the OS cursor with a small olive dot site-wide, and a
- * matching one over links (the per-link rule also comes from readymag.css).
+ * matching one over links (the per-link rule also comes from canvas.css).
  */
 @media (pointer: fine) {
   html,
