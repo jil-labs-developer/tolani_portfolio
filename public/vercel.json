@@ -11,5 +11,11 @@
     { "source": "/5", "destination": "/about", "permanent": true },
     { "source": "/5/", "destination": "/about", "permanent": true }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "headers": [
+    {
+      "source": "/assets/fonts.googleapis.com/css",
+      "headers": [{ "key": "Content-Type", "value": "text/css; charset=utf-8" }]
+    }
+  ]
 }
