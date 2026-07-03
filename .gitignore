@@ -47,3 +47,4 @@ coverage/
 .cache/
 dist-ssr/
 *.local
+crawl/
