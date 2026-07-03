@@ -1,23 +1,31 @@
-# site/ — React app for tolaniadekoya.com
+# site/ — React app for tolaniadekoya.com (exact visual replica)
 
-A React 18 + TypeScript single-page app, built with Vite. Builds `../deploy/`.
+React 18 + TypeScript + Vite, using React Router v6, TanStack Query, and Framer
+Motion. Builds `../deploy/`. The goal is a pixel-exact replica of the live
+Readymag-built tolaniadekoya.com, so each page is rendered from an exact capture
+of the live site's own computed widget layout rather than a hand-authored reflow.
 
-Stack: React Router v6 (routing), TanStack Query (page content loading/caching),
-React Context (mobile nav state, case-study scrollspy), Tailwind CSS (styling),
-Framer Motion (page transitions and scroll reveals).
+## How it works
 
-Pages are served at named URLs: `/`, `/iheart`, `/knot`, `/ehr`, `/about`
-(the old numeric `/2../5` paths redirect via `public/vercel.json`, with a
-client-side fallback in `src/App.tsx` for environments that don't apply
-`vercel.json`, e.g. `vite preview`).
+The live site is a Readymag "canvas": a fixed-width design surface (`1024px` on
+desktop, `320px` on phones) of absolutely-positioned widgets, scaled to the
+viewport. We captured, per page and per breakpoint, every widget's geometry +
+rendered HTML + inline styles into `src/canvas-data/*.json`, rewrote all asset
+URLs to the local mirror in `public/assets/`, and re-render them through
+`ReadymagCanvas` inside a container reproduced at the live scale
+(desktop `zoom:1.40625`, mobile `transform:scale(1.21875)`), wrapped in one
+outer `transform: scale(viewportWidth / referenceWidth)` so the net scale equals
+the live site's at any width. `src/readymag.css` holds the exact Readymag CSS
+rules those widgets reference (emotion classes, link styles, text metrics),
+extracted from the live stylesheets, plus a few base/reset rules.
 
 ## Commands
 
 ```bash
 npm install
 npm run dev        # localhost:8935
-npm run build      # writes ../deploy (the folder that gets deployed)
-npm run preview    # serve the build output on localhost:8935
+npm run build      # writes ../deploy
+npm run preview    # serve the build on localhost:8935
 npm run typecheck  # tsc --noEmit
 ```
 
@@ -25,27 +33,19 @@ npm run typecheck  # tsc --noEmit
 
 | Path | What it is |
 |---|---|
-| `src/content/` | Hand-authored, typed page content. `types.ts` defines the `Block` union used by case-study pages; `home.ts`/`about.ts` hold those pages' copy; `caseStudies/*.ts` hold the iHeart/Knot/EHR case studies (Knot is intentionally incomplete — `complete: false` — matching the source content); `index.ts` is the registry + the `fetch*` functions React Query calls. |
-| `src/routes/` | One component per route: `Home.tsx`, `About.tsx`, `CaseStudy.tsx` (generic template driven by `content/caseStudies/*`, used for all three case studies). |
-| `src/components/` | `Layout.tsx` (header/footer chrome + Framer Motion route transitions), `Header.tsx`, `Footer.tsx`, `CaseStudyBlocks.tsx` (renders the `Block` union), `HlsVideo.tsx` (lazy-loads `hls.js` for the case-study demo clips), `Reveal.tsx` (scroll-triggered fade-in). |
-| `src/context/` | `SiteContext` (mobile nav open/close), `ScrollSpyContext` (active-section tracking for the case-study sidebar, via `IntersectionObserver`). |
-| `public/` | Runtime assets served verbatim: the scraped CDN mirror (images, fonts, HLS video segments) under `public/assets/`, favicons under `public/dist/`, `vercel.json`. |
+| `src/canvas-data/*.json` | Captured widget layouts. `<page>.json` (desktop 1024) and `<page>-mobile.json` (phone 320). `index.ts` bundles them per slug and exposes `fetchCanvasBundle`. |
+| `src/components/ReadymagCanvas.tsx` | Renders a bundle: picks desktop/mobile by viewport width, reproduces the canvas at the live baked scale + an outer fit transform, injects the static widgets via one `dangerouslySetInnerHTML`, overlays `HlsVideo` for the video widgets, and intercepts in-canvas maglink clicks to route via React Router. |
+| `src/components/HlsVideo.tsx` | Plays the case-study demo clips (HLS via lazy-loaded hls.js, native on Safari). |
+| `src/routes/CanvasRoute.tsx` | Per-slug route: `useQuery(fetchCanvasBundle)` → `ReadymagCanvas`. |
+| `src/components/Layout.tsx` | Framer Motion route-transition wrapper (each canvas already contains its own header/footer widgets). |
+| `src/readymag.css` | Exact Readymag widget CSS (extracted) + base/reset + entrance-animation neutralization. |
+| `public/assets/` | Verbatim CDN mirror (images, fonts, HLS video). `public/cursor/` holds the 18px olive-dot cursor images. |
 
-## Adding a new case study
+## Re-capturing from the live site
 
-1. Add page content to `src/content/caseStudies/<name>.ts` following the
-   `CaseStudy` type in `src/content/types.ts` — a `blocks: Block[]` array
-   describes the page body; see the existing case studies for the block
-   vocabulary (`section-heading`, `paragraph`, `media-panel`, `card-grid`, etc).
-2. Register it in `src/content/index.ts`'s `caseStudies` map and `pageOrder`.
-3. Drop any new images/video into `public/assets/` (same CDN-mirror path
-   layout as the existing assets) and reference them from the content file.
-4. `npm run dev` — the page exists at `/<name>` with nav and sidebar wired up.
-
-## Design tokens
-
-Fonts and colors are defined in `src/index.css` (`@theme` block): IBM Plex
-Mono for nav/labels, Instrument Serif for headings, DM Sans for body copy,
-and a self-hosted Adobe Fonts script face (aliased to `Tolani Script`) for
-the hero name and signature. Each case study carries an `accent` color
-(`--color-iheart`/`knot`/`ehr`) used for its hero banner and section labels.
+The capture scripts live in this session's scratchpad (`extract-canvas.js`,
+`extract-mobile.js`, `extract-css2.js`): they load each page on
+tolaniadekoya.com at 1440 and 390, read `.page.center-page .page-content-container`,
+and dump widget geometry/HTML/CSS with asset URLs rewritten to `/assets/...`.
+Re-run them if the live site changes, then re-apply the base rules prepended to
+`readymag.css` (see git history / the file's top comment).

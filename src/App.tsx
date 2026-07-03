@@ -1,8 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { HomePage } from './routes/Home';
-import { AboutPage } from './routes/About';
-import { CaseStudyPage } from './routes/CaseStudy';
+import { CanvasRoute } from './routes/CanvasRoute';
 
 const LEGACY_REDIRECTS: Record<string, string> = {
   '/1': '/',
@@ -16,9 +14,11 @@ export function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path=":slug" element={<CaseStudyPage />} />
+        <Route index element={<CanvasRoute slug="home" />} />
+        <Route path="iheart" element={<CanvasRoute slug="iheart" />} />
+        <Route path="knot" element={<CanvasRoute slug="knot" />} />
+        <Route path="ehr" element={<CanvasRoute slug="ehr" />} />
+        <Route path="about" element={<CanvasRoute slug="about" />} />
         {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
           <Route key={from} path={from} element={<Navigate to={to} replace />} />
         ))}
