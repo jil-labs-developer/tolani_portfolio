@@ -10,8 +10,7 @@
 .animation-container, .animation-container *, .rmwidget.has-onhover-animation, .rmwidget.has-onhover-animation * { animation: none !important; }
 .animation-container .rmwidget, .animation-container img { opacity: 1 !important; }
 
-a.external-link, a.maglink, a.anchor-link { cursor: image-set(url("/cursor/dot-link.png") 1x, url("/cursor/dot-link.png") 2x), pointer; }
-.rmwidget.e-com-cart-button { cursor: image-set(url("/cursor/dot-link.png") 1x, url("/cursor/dot-link.png") 2x), pointer; }
+/* Link cursor override removed — the site-wide green dot is used everywhere. */
 .css-hzsikg .text-viewer { overflow-wrap: break-word; white-space: normal; }
 .css-hzsikg .text-viewer { font-feature-settings: "liga" 0, "rlig" 0, "dlig" 0, "hlig" 0, "smcp" 0; -webkit-line-break: after-white-space; white-space: pre-wrap; text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased; }
 .css-q2pcac { box-sizing: border-box; display: flex; flex-direction: column; -webkit-box-pack: start; justify-content: flex-start; --editor-border-color: transparent; direction: ltr; overflow: visible; width: 71.1111%; height: 71.1111%; zoom: 0.711111; transform: scale(1.40625); transform-origin: left top; }
@@ -36,14 +35,14 @@ a.external-link, a.maglink, a.anchor-link { cursor: image-set(url("/cursor/dot-l
 }
 .link-style-140d22d7-83a5-425f-8526-08d0140774fc { text-decoration: none; padding-bottom: 1px; background: none; color: rgb(102, 102, 102); }
 .link-style-140d22d7-83a5-425f-8526-08d0140774fc * { color: rgb(102, 102, 102); }
-.link-style-140d22d7-83a5-425f-8526-08d0140774fc .hover, .link-style-140d22d7-83a5-425f-8526-08d0140774fc:hover { text-decoration: none; padding-bottom: 1px; background: none; color: rgba(0, 0, 0, 0.8) !important; }
-.link-style-140d22d7-83a5-425f-8526-08d0140774fc .hover *, .link-style-140d22d7-83a5-425f-8526-08d0140774fc:hover * { color: rgba(0, 0, 0, 0.8) !important; }
+.link-style-140d22d7-83a5-425f-8526-08d0140774fc .hover, .link-style-140d22d7-83a5-425f-8526-08d0140774fc:hover { text-decoration: none; padding-bottom: 1px; background: none; color: rgba(102, 102, 102, 0.5) !important; }
+.link-style-140d22d7-83a5-425f-8526-08d0140774fc .hover *, .link-style-140d22d7-83a5-425f-8526-08d0140774fc:hover * { color: rgba(102, 102, 102, 0.5) !important; }
 .link-style-140d22d7-83a5-425f-8526-08d0140774fc.current { text-decoration: none; padding-bottom: 1px; background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%) 0px 100% / 1px 1px repeat-x; color: rgb(0, 0, 0); }
 .link-style-140d22d7-83a5-425f-8526-08d0140774fc.current * { color: rgb(0, 0, 0); }
 .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32 { text-decoration: none; padding-bottom: 1px; background: none; color: rgb(102, 102, 102); }
 .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32 * { color: rgb(102, 102, 102); }
-.link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32 .hover, .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32:hover { text-decoration: none; padding-bottom: 1px; background: none; color: rgba(0, 0, 0, 0.8) !important; }
-.link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32 .hover *, .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32:hover * { color: rgba(0, 0, 0, 0.8) !important; }
+.link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32 .hover, .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32:hover { text-decoration: none; padding-bottom: 1px; background: none; color: rgba(102, 102, 102, 0.5) !important; }
+.link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32 .hover *, .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32:hover * { color: rgba(102, 102, 102, 0.5) !important; }
 .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32.current { text-decoration: none; padding-bottom: 1px; background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%) 0px 100% / 1px 1px repeat-x; color: rgb(0, 0, 0); }
 .link-style-958062a5-7849-4edc-a4ad-f485b1d0ad32.current * { color: rgb(0, 0, 0); }
 .unstyled { font-size: 18px; line-height: 26px; font-family: Inter; font-weight: 400; font-style: normal; }
@@ -65,3 +64,40 @@ a.external-link, a.maglink, a.anchor-link { cursor: image-set(url("/cursor/dot-l
 .css-1hjul1e .public-DraftEditor-content { overflow-wrap: break-word; white-space: normal !important; }
 .css-1hjul1e .text-viewer { overflow-wrap: break-word; white-space: normal; }
 .css-1hjul1e div[data-contents="true"], .css-1hjul1e .text-viewer { font-feature-settings: "liga" 0, "rlig" 0, "dlig" 0, "hlig" 0, "smcp" 0; -webkit-line-break: after-white-space; white-space: pre-wrap; text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased; }
+
+/* ── Interactive element hover effects ───────────────────────────── */
+a.maglink .widget-picture img,
+a.external-link .widget-picture img,
+.animation-container:has(a) img {
+  transition: opacity 0.2s ease;
+}
+a.maglink:hover .widget-picture img,
+a.external-link:hover .widget-picture img,
+.animation-container:has(a):hover img {
+  opacity: 0.75 !important;
+}
+a.maglink, a.external-link, a.anchor-link { transition: color 0.2s ease; }
+a.maglink *, a.external-link *, a.anchor-link * { transition: color 0.2s ease; }
+
+/* ── "Coming Soon" tooltip ───────────────────────────────────────── */
+.coming-soon-tooltip {
+  background: #BBBA4C;
+  color: #555;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  padding: 12px 24px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── About page painting caption reveal ──────────────────────────── */
+[data-about-caption] {
+  transition: opacity 0.3s ease !important;
+  pointer-events: none;
+}
+[data-about-caption].visible {
+  opacity: 1 !important;
+}

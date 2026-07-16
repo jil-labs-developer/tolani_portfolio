@@ -16,5 +16,5 @@ export function CanvasRoute({ slug }: { slug: string }) {
 
   if (isError) return <Navigate to="/" replace />;
   if (isLoading || !data) return null;
-  return <ReadymagCanvas bundle={data} />;
+  return <ReadymagCanvas bundle={data} slug={slug} />;
 }
